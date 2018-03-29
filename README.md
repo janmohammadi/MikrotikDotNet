@@ -40,6 +40,56 @@ Result (Raw api response):
 !re=.id=*6=address=172.19.1.19/19=network=172.19.0.0=interface=bridge1=actual-interface=bridge1=invalid=false=dynamic=false=disabled=false
 ```
 
+To query data at API level:
+
+Filtering at API level decreases network payload and improves the performance.
+
+```cs
+using (var conn = new MKConnection(IPADDRESS, USERNAME, PASSWORD))
+{
+     conn.Open();
+     var cmd = conn.CreateCommand("ip address print where address=172.16.0.1/30");
+     var result = cmd.ExecuteReader();
+     foreach (var line in result)
+          Console.WriteLine(line);
+
+}
+```
+
+Result:
+
+```
+!re=.id=*5=address=172.16.0.1/30=network=172.16.0.0=interface=bridge1=actual-nterface=bridge1=invalid=false=dynamic=false=disabled=false
+```
+
+Or:
+
+```cs
+using (var conn = new MKConnection(IPADDRESS, USERNAME, PASSWORD))
+{
+conn.Open();
+var cmd = conn.CreateCommand("ip address print");
+var condition = new MKCommandParameterCollection()
+{
+     new MKCommandParameter("address","172.16.0.1/3"),
+     new MKCommandParameter("address","172.19.1.19/19")
+};
+
+var result = cmd.ExecuteReader(queryConditions: condition, logic: MKQueryLogicOperators.Or);
+foreach (var line in result)
+     Console.WriteLine(line);
+
+}
+
+
+```
+
+Result:
+```
+!re=.id=*5=address=172.16.0.1/30=network=172.16.0.0=interface=bridge1=actual-nterface=bridge1=invalid=false=dynamic=false=disabled=false
+!re=.id=*6=address=172.19.1.19/19=network=172.19.0.0=interface=bridge1=actual-interface=bridge1=invalid=false=dynamic=false=disabled=false
+```
+
 To deserialize response: (ExecuteReader<T>)
 ```cs
 class MyIpAddress
@@ -74,13 +124,7 @@ To get dynamic object response: (ExecuteReaderDynamic)
 you can get response object without defining any model class.
 
 ```cs
-class MyIpAddress
-{
-    public string MKID { get; set; }  //MKID alwase referce to .id field in response.
-    public string Address { get; set; } // Use PascalCase naming style for properties. it will convert from/to kebab-case naming.
-    public string Interface { get; set; }
-}
-//------------------------------------------------
+
 using (var conn = new MKConnection(IPADDRESS, USERNAME, PASSWORD))
 {
     conn.Open();
