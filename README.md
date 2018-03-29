@@ -1,5 +1,5 @@
 # MikrotikDotNet
-MikrotikDotNet is a lightwaight and easy to use ADO.NET like library for Mikrotik Api with extensibility and performance in mind.
+MikrotikDotNet is a lightweight and easy to use ADO.NET like library for Mikrotik Api with extensibility and performance in mind.
 
 [NuGet package:](https://www.nuget.org/packages/Mikrotik.Net)
 ```
