@@ -94,7 +94,7 @@ To deserialize response: (ExecuteReader<T>)
 ```cs
 class MyIpAddress
 {
-    public string MKID { get; set; }  //MKID alwase referce to .id field in response.
+    public string MKID { get; set; }  //MKID always referce to .id field in response.
     public string Address { get; set; } // Use PascalCase naming style for properties. it will convert from/to kebab-case naming.
     public string Interface { get; set; }
 }
