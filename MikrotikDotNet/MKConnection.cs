@@ -102,7 +102,9 @@ namespace MikrotikDotNet
             string hash = Read()[0].Split(new string[] { "ret=" }, StringSplitOptions.None)[1];
             Send("/login");
             Send("=name=" + UserName);
-            Send("=response=00" + EncodePassword(Password, hash));
+            //Don't need to hashing password
+            //Send("=response=00" + EncodePassword(Password, hash));
+            Send("=password=" + Password);
             Push();
 
             if (Read()[0] != "!done")
