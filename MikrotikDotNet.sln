@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikrotikDotNet", "MikrotikDotNet\MikrotikDotNet.csproj", "{3A72378B-C149-4CF0-808F-60FA4C1C6992}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikrotikDotNet.UnitTests", "MikrotikDotNet.UnitTests\MikrotikDotNet.UnitTests.csproj", "{90DC73D4-8095-4F81-84C8-A609FCDEFEBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{2C04261B-6823-4189-86B2-EB3572206BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,21 +23,16 @@ Global
 		{90DC73D4-8095-4F81-84C8-A609FCDEFEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90DC73D4-8095-4F81-84C8-A609FCDEFEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DC73D4-8095-4F81-84C8-A609FCDEFEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C04261B-6823-4189-86B2-EB3572206BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C04261B-6823-4189-86B2-EB3572206BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C04261B-6823-4189-86B2-EB3572206BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C04261B-6823-4189-86B2-EB3572206BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.techno2000.net/tfs/techno2000
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = MikrotikDotNet\\MikrotikDotNet.csproj
-		SccProjectName1 = MikrotikDotNet
-		SccLocalPath1 = MikrotikDotNet
-		SccProjectUniqueName2 = MikrotikDotNet.UnitTests\\MikrotikDotNet.UnitTests.csproj
-		SccProjectName2 = MikrotikDotNet.UnitTests
-		SccLocalPath2 = MikrotikDotNet.UnitTests
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14657D93-A0D8-44A3-B992-557F5F075132}
 	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = 16b0ed00-5ac8-44de-b2f2-86b4a53f0be2

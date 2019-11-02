@@ -100,9 +100,26 @@ namespace MikrotikDotNet
             Send("/login");
             Push();
             string hash = Read()[0].Split(new string[] { "ret=" }, StringSplitOptions.None)[1];
+            string errorMsg = "";
             Send("/login");
             Send("=name=" + UserName);
-            Send("=response=00" + EncodePassword(Password, hash));
+             try
+            {
+                Send("=password=" + Password);
+            }
+            catch (Exception)
+            {
+                throw new MKConnectionException(string.Format("Invalid UserName or Password failed for {0} With User:{1} and Pass:{2}.", Host, UserName, Password));
+            }
+            try
+            {
+                Send("=response=00" + EncodePassword(Password, hash));
+            }
+            catch (Exception)
+            {
+                throw new MKConnectionException(string.Format("Invalid UserName or Password failed for {0} With User:{1} and Pass:{2}.", Host, UserName, Password));
+            }
+           
             Push();
 
             if (Read()[0] != "!done")
