@@ -32,11 +32,11 @@ steps:
 #     platform: '$(buildPlatform)'
 #     configuration: '$(buildConfiguration)'
 
-# - task: NuGetCommand@2
-#   inputs:
-#     command: pack
-#     packagesToPack: '**/*.csproj'
-#     versioningScheme: byPrereleaseNumber
-#     majorVersion: '$(Major)'
-#     minorVersion: '$(Minor)'
-#     patchVersion: '$(Patch)'
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**/*.csproj'
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '4'
