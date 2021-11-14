@@ -27,16 +27,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+# - task: VSTest@2
+#   inputs:
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: pack
-    packagesToPack: '**/*.csproj'
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '$(Major)'
-    minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)'
+# - task: NuGetCommand@2
+#   inputs:
+#     command: pack
+#     packagesToPack: '**/*.csproj'
+#     versioningScheme: byPrereleaseNumber
+#     majorVersion: '$(Major)'
+#     minorVersion: '$(Minor)'
+#     patchVersion: '$(Patch)'
