@@ -41,6 +41,7 @@ steps:
 #     nuGetServiceConnections: 'NugetOrgConnection'
 
 - task: NuGetCommand@2
+  displayName: 'Create NuGet Package'
   inputs:
     command: pack
     packagesToPack: '**/MikrotikDotNet.csproj'
@@ -51,6 +52,7 @@ steps:
     patchVersion: '$(Patch)'
 
 - task: NuGetCommand@2
+  displayName: 'Publish to NugetOrg'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
