@@ -32,11 +32,12 @@ steps:
 #     platform: '$(buildPlatform)'
 #     configuration: '$(buildConfiguration)'
 
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: 'NugetOrgConnection'
+
 - task: NuGetCommand@2
   inputs:
     command: pack
-    packagesToPack: '**/*.csproj'
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '1'
-    minorVersion: '0'
-    patchVersion: '4'
+    packagesToPack: '**/MikrotikDotNet.csproj'
+    packDestination: '$(Build.ArtifactStagingDirectory)'
