@@ -13,6 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  Major: '1'
+  Minor: '0'
+  Patch: '5'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -27,6 +30,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+
 # - task: VSTest@2
 #   inputs:
 #     platform: '$(buildPlatform)'
@@ -35,10 +39,6 @@ steps:
 # - task: NuGetAuthenticate@0
 #   inputs:
 #     nuGetServiceConnections: 'NugetOrgConnection'
-variables:
-  Major: '1'
-  Minor: '0'
-  Patch: '5'
 
 - task: NuGetCommand@2
   inputs:
@@ -46,6 +46,6 @@ variables:
     packagesToPack: '**/MikrotikDotNet.csproj'
     packDestination: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
-      majorVersion: '$(Major)'
-      minorVersion: '$(Minor)'
-      patchVersion: '$(Patch)'
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
