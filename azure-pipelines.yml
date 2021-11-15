@@ -49,3 +49,15 @@ steps:
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
+
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: 'NugetOrgConnection'
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
