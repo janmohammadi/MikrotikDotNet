@@ -32,9 +32,9 @@ steps:
 #     platform: '$(buildPlatform)'
 #     configuration: '$(buildConfiguration)'
 
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: 'NugetOrgConnection'
+# - task: NuGetAuthenticate@0
+#   inputs:
+#     nuGetServiceConnections: 'NugetOrgConnection'
 
 - task: NuGetCommand@2
   inputs:
