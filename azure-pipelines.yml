@@ -6,17 +6,15 @@
 trigger:
 - master
 
+variables:
+  BUILD_BUILDNUMBER: '1.2.3'
 
 steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
       packagesToPack: '**/Mikrotik.Net.csproj'
-      versioningScheme: byPrereleaseNumber
-      majorVersion: '1'
-      minorVersion: '1'
-      patchVersion: '4'
-
+      versioningScheme: byBuildNumber
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
