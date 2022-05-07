@@ -46,15 +46,21 @@ steps:
     command: pack
     packagesToPack: '**/MikrotikDotNet.csproj'
     packDestination: '$(Build.ArtifactStagingDirectory)'
-    versioningScheme: byPrereleaseNumber
+    versioningScheme: byBuildNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
 
-- task: NuGetCommand@2
-  displayName: 'Publish to NugetOrg'
+- task: PublishBuildArtifacts@1
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'NugetOrgConnection'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+    
+# - task: NuGetCommand@2
+#   displayName: 'Publish to NugetOrg'
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'NugetOrgConnection'
