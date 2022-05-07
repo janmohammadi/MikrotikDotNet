@@ -7,11 +7,11 @@ trigger:
 - master
 
 variables:
-  BUILD_BUILDNUMBER: '$(BuildDefinitionName)_$(Year:yyyy).$(Month).(DayOfMonth)$(Rev:.r)'
+  BUILD_BUILDNUMBER: $(BuildDefinitionName)_$(Year:yyyy).$(Month).(DayOfMonth)$(Rev:.r)
 
 
 steps:
-  - script: 'echo $(BUILD_BUILDNUMBER)'
+  - script: echo '$(BUILD_BUILDNUMBER)'
   # - task: DotNetCoreCLI@2
   #   inputs:
   #     command: 'pack'
