@@ -11,9 +11,8 @@ variables:
 
 
 steps:
-  - script: echo '$(Year)'
-  - script: echo $(Year)
-  - script: echo $(Year:yyyy)
+  - script: echo $(Build.BuildNumber)
+  - script: echo $(Build.DefinitionName)
   # - task: DotNetCoreCLI@2
   #   inputs:
   #     command: 'pack'
