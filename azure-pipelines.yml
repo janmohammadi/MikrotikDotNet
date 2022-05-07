@@ -6,16 +6,13 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   Major: '1'
   Minor: '0'
-  Patch: '5'
+  Patch: '6'
 
 steps:
 - task: NuGetToolInstaller@1
