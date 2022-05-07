@@ -1,7 +1,7 @@
 ﻿using MikrotikDotNet.ReponseParser;
 using Xunit;
 
-namespace MikrotikDotNet.UnitTests.MkResponseParserTests
+namespace Mikrotik.Net.UnitTest.MkResponseParserTests
 {
     public class When_Parsing_Dynamic_Object : Given_Response_Parser
     {

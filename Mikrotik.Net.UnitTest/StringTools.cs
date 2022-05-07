@@ -1,4 +1,4 @@
-﻿namespace MikrotikDotNet.UnitTests
+﻿namespace Mikrotik.Net.UnitTest
 {
     public static class StringTools
     {
