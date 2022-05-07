@@ -13,6 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  Major: '1'
+  Minor: '0'
+  Patch: '6'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -27,16 +30,37 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+
+# - task: VSTest@2
+#   inputs:
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
+
+# - task: NuGetAuthenticate@0
+#   inputs:
+#     nuGetServiceConnections: 'NugetOrgConnection'
 
 - task: NuGetCommand@2
+  displayName: 'Create NuGet Package'
   inputs:
     command: pack
-    packagesToPack: '**/*.csproj'
-    versioningScheme: byPrereleaseNumber
+    packagesToPack: '**/MikrotikDotNet.csproj'
+    packDestination: '$(Build.ArtifactStagingDirectory)'
+    versioningScheme: byBuildNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+    
+# - task: NuGetCommand@2
+#   displayName: 'Publish to NugetOrg'
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'NugetOrgConnection'
