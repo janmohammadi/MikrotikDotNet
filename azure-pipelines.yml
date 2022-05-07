@@ -13,6 +13,10 @@ steps:
       command: 'pack'
       packagesToPack: '**/Mikrotik.Net.csproj'
       versioningScheme: off
+      majorVersion: '1'
+      minorVersion: '1'
+      patchVersion: '4'
+
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
