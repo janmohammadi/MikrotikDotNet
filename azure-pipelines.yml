@@ -6,20 +6,15 @@
 trigger:
 - master
 
-variables:
-  BUILD_BUILDNUMBER: $(BuildDefinitionName)_$(Year:yyyy).$(Month).(DayOfMonth)$(Rev:.r)
-
 
 steps:
-  - script: echo $(Build.BuildNumber)
-  - script: echo $(Build.DefinitionName)
-  # - task: DotNetCoreCLI@2
-  #   inputs:
-  #     command: 'pack'
-  #     packagesToPack: '**/Mikrotik.Net.csproj'
-  #     versioningScheme: 'byBuildNumber'
-  # - task: PublishBuildArtifacts@1
-  #   inputs:
-  #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #     ArtifactName: 'drop'
-  #     publishLocation: 'Container'
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/Mikrotik.Net.csproj'
+      versioningScheme: off
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
