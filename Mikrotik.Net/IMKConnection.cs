@@ -16,9 +16,10 @@ namespace MikrotikDotNet
         IMKCommand CreateCommand();
         IMKCommand CreateCommand(string commandText);
         void Dispose();
-        string EncodePassword(string Password, string hash);
+        string EncodePassword(string password, string hash);
         bool Equals(MKConnection other);
         void Open();
+        void Open(string host, string username, string password, int port);
         void Push();
         List<string> Read();
         void Send(string co);

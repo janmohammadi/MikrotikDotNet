@@ -21,10 +21,20 @@ namespace MikrotikDotNet
         private TcpClient con;
         private Stream connection;
 
-        public MKConnection(string host, string username, string password, int port = 8728)
+        public MKConnection(string host, string username, string password)
+        {
+            init(host, username, password, 8728);
+        }
+
+
+        public MKConnection(string host, string username, string password, int port)
+        {
+            init(host, username, password, port);
+        }
+
+        private void init(string host, string username, string password, int port)
         {
             GUID = Guid.NewGuid();
-
             con = new TcpClient();
             Host = host;
             UserName = username;
@@ -32,7 +42,6 @@ namespace MikrotikDotNet
             Port = port;
         }
 
-      
 
         public string Host { get; set; }
 
@@ -87,6 +96,13 @@ namespace MikrotikDotNet
 
         public void Open()
         {
+
+            if (string.IsNullOrEmpty(Host) || string.IsNullOrEmpty(UserName) || Port == 0)
+            {
+                throw new ArgumentNullException(
+                    "Host, Username and Port must have a value. Please initiate them first.");
+            }
+
             try
             {
                 con.Connect(Host, Port);
@@ -103,7 +119,7 @@ namespace MikrotikDotNet
             string errorMsg = "";
             Send("/login");
             Send("=name=" + UserName);
-             try
+            try
             {
                 Send("=password=" + Password);
             }
@@ -119,7 +135,7 @@ namespace MikrotikDotNet
             {
                 throw new MKConnectionException(string.Format("Invalid UserName or Password failed for {0} With User:{1} and Pass:{2}.", Host, UserName, Password));
             }
-           
+
             Push();
 
             if (Read()[0] != "!done")
@@ -127,6 +143,12 @@ namespace MikrotikDotNet
                 throw new MKConnectionException(string.Format("Invalid UserName or Password failed for {0} With User:{1} and Pass:{2}.", Host, UserName, Password));
             }
             IsOpen = true;
+        }
+
+        public void Open(string host, string username, string password, int port)
+        {
+            init(host,username,password,port);
+            Open();
         }
 
         public void Push()
